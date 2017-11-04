@@ -6,7 +6,7 @@ layout: page
 
 In this class we'll be using a deep neural network (DNN) to perform classification of images. Classification is an approach where given an image, we will try to identify which of the pre-defined category it belongs to.
 
-In order to do this you will put together a dataset from the labelled images provided, build a convolutional neural network model (a DNN with `convolution` layers) and then train it.
+In order to do this you will put together a dataset from the labelled images provided, build a convolutional neural network model (a DNN with `Convolution` layers) and then train it.
 
 You'll be using a web-based software called DIGITS that will allow you to interactively build and train a DNN.
 
@@ -25,8 +25,6 @@ To familiarise yourself with DIGITS, we'll put together a simple model that can 
 We'll use the MNIST dataset by LeCunn et al. of handwritten digits. The dataset contains 60,000 labelled images of numbers 0-9 for training and another 10,000 labelled images for testing. As the name suggests, the training set is used in training our model. The testing set is used only to check how well our model will classify something it hasn't seen before. This separation of data for training and testing is essential for estimating how well the model will perform.
 
 As the images are labelled, you'll be training the model with an approach called `supervised learning`. As the weights between the connections of our neurons are random when we initially create the model, the network will likely give a wrong classification for any images that's passed to it. When training the model, because images are labelled, the network knows whether its decision was correct or not. This allows the weights in the network to be adjusted, leading to a correct prediction in the end.
-
-
 
 ### Creating the Dataset
 
@@ -117,7 +115,7 @@ Looks like the model has predicted correctly that the digit is 5. You can also t
 
 <img src="/img/classify_5.png"  alt="Lenet training graph" class="img-responsive img-rounded img-screenshot" />
 
-## Exercise: Image Classification of Cats and Dogs
+## Exercise 1: Classification of Cats and Dogs
 
 Put together a deep learning network for classifying images of cats and dogs using what we've learnt so far.
 
@@ -132,7 +130,7 @@ We first need to put together a dataset for training our network using the image
 
 Labelled images obtained from Keggle/Microsoft research will be used for training the model. The dataset contains 25,000 images in total, half of which are dogs and the other half are cats.  
 
-<img src="/img/dog.6.jpg" alt="Cat" class="img-responsive " style="max-width:200px;max-height:200px" /> | <img src="/img/cat.9.jpg" alt="" class="img-responsive " style="max-width:200px;max-height:200px" /> | <img src="/img/dog.34.jpg" alt="" class="img-responsive " style="max-width:200px;max-height:200px" /> | <img src="/img/cat.24.jpg" alt="" class="img-responsive " style="max-width:200px;max-height:200px" /> | <img src="/img/dog.81.jpg" alt="" class="img-responsive " style="max-width:200px;max-height:200px" /> | <img src="/img/cat.39.jpg" alt="" class="img-responsive " style="max-width:200px;max-height:200px" />
+<img src="/img/dog.6.jpg" alt="Cat" class="img-responsive " style="max-width:150px;max-height:150px" /> | <img src="/img/cat.9.jpg" alt="" class="img-responsive " style="max-width:150px;max-height:150px" /> | <img src="/img/dog.34.jpg" alt="" class="img-responsive " style="max-width:150px;max-height:150px" /> | <img src="/img/cat.24.jpg" alt="" class="img-responsive " style="max-width:150px;max-height:150px" /> | <img src="/img/dog.81.jpg" alt="" class="img-responsive " style="max-width:150px;max-height:150px" /> | <img src="/img/cat.39.jpg" alt="" class="img-responsive " style="max-width:150px;max-height:150px" />
 
 Click on the `Datasets` tab, then `Images` and `Classification`.
 
@@ -145,22 +143,141 @@ You'll be taken to the `New Image Classification Dataset` page. Then:
 
 <img src="/img/new_image_dataset.png"  alt="New dataset" class="img-responsive img-rounded img-screenshot"  />
 
-## Improving the accuracy of your model
-Unlike the MNIST dataset, 
+## Exercise 2: Improving the accuracy of your model
+Unlike MNIST, the cats and dogs dataset has much more variation and is therefore harder to for the model to make a prediction. Use one or a combination of techniques described in the following sections to maximise your accuracy. What's the highest accuracy that you can achieve?
+
+### Customising your network layers
+
+It is possible to customise your network by editing the network definition file. The network is composed of a series of layers connected to each other. For example, here's a `Convolution` and `Pooling` layer:
+
+```
+layer {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 50
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+```
+The connection between layers are indicated by the `top` and `bottom` parameters. The `top` parameter is the output of the layer, and `bottom` parameter is the input. From the above example, it can be seen that the `Convolution` layer named `conv2` has the input `pool1` and outputs `conv2`.
+
+To edit your model, on model creation page after chossing `LeNet`, click `Customize`.
+
+<img src="/img/customize_network.png"  alt="Customise network" class="img-responsive img-rounded img-screenshot" />
+
+This will take you to the network editor. You can click on the `Visualize` button to see the visulisation of the network graph.
+
+<img src="/img/customizing_network.png"  alt="Network editor" class="img-responsive img-rounded img-screenshot" />
+
+The network visulisation is shown below:
+
+<img src="/img/network_graph.png"  alt="Network visulisation" class="img-responsive img-rounded img-screenshot" />
+
+Once you've started training your customised model, it is possible to clone your model in order to keep the settings and changes in the model definition file so that you can make further changes. Just click on the `Clone Job` button of the model that's training or has already finished training.
+
+<img src="/img/clone_job.png"  alt="Network visulisation" class="img-responsive img-rounded img-screenshot" />
+
+### Use more filters in your convolution layer
+
+Adding more filters in your `Convolution` layers allows it to detect more features which can allow the model to make more complex predictions. You can do this by increasing the `num_output` parameter. In this case, for `conv2` layer, the `50` filters has changed to `100`.
+
+```
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 100
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+```
 
 ### Add activation functions
 
-### More training
+Activation functions such as `ReLU` adds non-linearity to our network and allows it to express more complexity. Try adding the `ReLU` layer after every `Pooling` layer in your network:
 
-### Add more filters
+```
+layer {
+  name: "relu"
+  type: "ReLU"
+  bottom: "pool1"
+  top: "pool1"
+}
+```
 
 ### Add more layers
 
+Deeper networks also allows for more complex predictions. Try adding more `Convolution` layers to your model.
+* Don't forget to add a `Pooling` and optionally `ReLU` layer after your new `Convolution` layer.
+* Don't forget to change the `bottom` prameter of the `ip1` layer.
+
+
+### More training
+
+As the more filters and layers are added, the model will have to be trained for longer. This can be done by changing the number of training `epochs` while creating your model:
+
+<img src="/img/training_epochs.png" alt="Changing epochs" class="img-responsive img-rounded img-screenshot"  />
+
 ### Reduce overfitting
 
-<img src="/img/training-val-loss-divergent.png" alt="Divergent training validation loss" class="img-responsive"  />
+<img src="/img/training-val-loss-divergent.png" alt="Divergent training validation loss" class="img-responsive img-rounded img-screenshot"  />
+
+```
+layer {
+  name: "drop1"
+  type: "Dropout"
+  top: "pool1"
+  bottom: "pool1"
+  dropout_param{
+    dropout_ratio: 0.5
+  }
+
+}
+```
 
 
-### Get more data and augment them
+## Going further: Getting more data and augmenting them
 
 <img src="/img/dl_moredata.png" alt="DNN performance increases with more data" class="img-responsive"  />
