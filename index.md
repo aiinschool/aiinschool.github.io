@@ -85,13 +85,15 @@ You'll be taken to the `New Image Classification Model` page, then:
 
 <img src="/img/create_lenet_model.png"  alt="Creating a LeNet model" class="img-responsive img-rounded img-screenshot" />
 
+### Model Training
+
 The process of training the model is a loop of propagating data forwards then backwards through the network:
 * An image is passed through the input and propagates forward through the network (called `forward propgation` or `inferencing`) and gives a prediction on which category the input image belongs to.
 * The `error` or `loss` is calculated. The higher the `loss` value, the more likely the model will give an incorrect result.
 * `Back propagation` then occurs where the weights in the network are adjusted so that the `loss` decreases.
 * The process starts again using a different image.
 
-<img src="/img/dnn_training.png" class="img-responsive" alt="Deep Neural Network training" />
+<img src="/img/dnn_training.png" class="img-responsive" alt="Deep Neural Network training" style="max-width: 600px" />
 
 In the meanwhile you'll see a graph showing the status of the training being plotted in real-time.
 
@@ -117,12 +119,12 @@ Looks like the model has predicted correctly that the digit is 5. You can also t
 
 ## Exercise 1: Classification of Cats and Dogs
 
-Put together a deep learning network for classifying images of cats and dogs using what we've learnt so far.
+**Put together a deep learning network for classifying images of cats and dogs using what we've learnt so far.**
 
 **Tasks**
-* Create the dataset following the instructions in the section below. Go through it carefully as the settings are different!
-* Create and train the model.
-* Load an image from the internet and test classify to see if your model works.
+* **Create the dataset following the instructions in the section below. Go through it carefully as the settings are different!**
+* **Create and train the model.**
+* **Load a few images from the internet and test classify to see if your model works.**
 
 ### Creating the Cats and Dogs Dataset
 
@@ -144,7 +146,7 @@ You'll be taken to the `New Image Classification Dataset` page. Then:
 <img src="/img/new_image_dataset.png"  alt="New dataset" class="img-responsive img-rounded img-screenshot"  />
 
 ## Exercise 2: Improving the accuracy of your model
-Unlike MNIST, the cats and dogs dataset has much more variation and is therefore harder to for the model to make a prediction. Use one or a combination of techniques described in the following sections to maximise your accuracy. What's the highest accuracy that you can achieve?
+**Unlike MNIST, the cats and dogs dataset has much more variation and is therefore harder to for the model to make a prediction. Use one or a combination of techniques described in the following sections to maximise your accuracy. What's the highest accuracy that you can achieve?**
 
 ### Customising your network layers
 
@@ -204,7 +206,7 @@ Once you've started training your customised model, it is possible to clone your
 
 <img src="/img/clone_job.png"  alt="Network visulisation" class="img-responsive img-rounded img-screenshot" />
 
-### Use more filters in your convolution layer
+### Use more filters in your convolution layers
 
 Adding more filters in your `Convolution` layers allows it to detect more features which can allow the model to make more complex predictions. You can do this by increasing the `num_output` parameter. In this case, for `conv2` layer, the `50` filters has changed to `100`.
 
@@ -221,7 +223,7 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 100
+    num_output: 100 #<-- Change the number of feature maps here
     kernel_size: 5
     stride: 1
     weight_filler {
@@ -256,13 +258,21 @@ Deeper networks also allows for more complex predictions. Try adding more `Convo
 
 ### More training
 
-As the more filters and layers are added, the model will have to be trained for longer. This can be done by changing the number of training `epochs` while creating your model:
+As the more feature maps and layers are added, the model will have to be trained for longer. This can be done by changing the number of training `epochs` while creating your model:
 
 <img src="/img/training_epochs.png" alt="Changing epochs" class="img-responsive img-rounded img-screenshot"  />
 
 ### Reduce overfitting
 
+It is also important to observe the `validation loss` (green line) along with the `accuracy` (orange line). The graph below shows an example of `training loss` (blue line) diverging from the `validation loss`:
+
 <img src="/img/training-val-loss-divergent.png" alt="Divergent training validation loss" class="img-responsive img-rounded img-screenshot"  />
+
+This is a clear sign of `overfitting` and it means that your model will more likely to misclassify images that it wasn't trained on. In order to reduce overfitting, a technique called `Dropout` where a certain percentage of random neurons are excluded from training. The neurons selected to be excluded change at every `forward propagation` step.
+
+<img src="/img/dropout.png" alt="Applying dropout" class="img-responsive img-rounded img-screenshot"  />
+
+The technique can be used in your model by introducing the `Dropout` layer and any layer below it will experience the dropout. The `dropout_ratio` determines the percentage of excluded neurons in the layer e.g. `0.6` means 60% of random neurons will not be used.  Try putting `Dropout` layers after the `Pooling` or `ReLU` layers.
 
 ```
 layer {
@@ -280,4 +290,10 @@ layer {
 
 ## Going further: Getting more data and augmenting them
 
+Unlike previous machine learning approach, deep learning's performance has been shown to keep improving the more data and processing power you give to it. If you're struggling to raise accuracy, it may be that you need to incrase the size of your dataset or increase the size of your network.
+
 <img src="/img/dl_moredata.png" alt="DNN performance increases with more data" class="img-responsive"  />
+
+Many techniques can be applied to augment your data. For images, by inverting, scaling, rotating or adding noise, it is possible to increase the size of your dataset and make your model more robust to unexpected inputs.
+
+<img src="/img/data_augment.png" alt="Augmenting data by applying transform" class="img-responsive"  />
