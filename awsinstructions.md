@@ -8,11 +8,12 @@ permalink: /awsinstructions
 The following is an instruction for using AWS to launch instances of DIGITS for your students.
 
 1. Login to `console.aws.amazon.com`, enter your `username` and `password`.
+2. Click on `your name` in the top right and then on `My account`. Send your `Account Id` number to [t.karmakharm@sheffield.ac.uk](mailto:t.karmakharm@sheffield.ac.uk) to be added to the list of users the class image is made available to.
 2. Click on `Services` at the top-right of your screen and then on `EC2`. You will be taken to the EC2 dashboard.
     <br/>![EC 2](/img/aws/2-ec2.png)
 3. Click on `AMIs` on the left menu. <br/>![AMIs](/img/aws/3-amis.png)
-4. In the search bar, select `Public images` and type in `ami-1c1fbc65`.
-5. Right-click on the image called `DIGITS AI in School` and select `Launch`. <br/>![Launch images](/img/aws/5-launchimg.png)
+4. In the search bar, select `Public images` and type in `ami-0bed4f72`. <br/>![Search for AMI](/img/aws/4-amisearch.png)
+5. `Right-click` on the image called `DIGITS AI in School` and select `Launch`. <br/>![Launch images](/img/aws/5-launchimg.png)
 6. Select the `GPU Compute p2.xlarge` <br/>![Select p2.xlarge](/img/aws/6-p2xlarge.png)
 7. Select `Next: Configure Instance Details`. You'll be taken to the `Configure Instance` page. <br/>![Config instance detail](/img/aws/7-configinstancedetail.png)
 8. In the `Number of instances` box, enter the number equal to the `number of students` in the class. <br/>![EC 2](/img/aws/8-numinstances.png)
