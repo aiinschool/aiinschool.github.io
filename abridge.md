@@ -15,7 +15,7 @@ You'll be using a web-based software called DIGITS that will allow you to intera
 
 In order to access DIGITS, click the link below:
 
-<h3><a href="http://52.31.253.104:5000" target="_blank">Open DIGITS</a></h3>
+<h3><a href="http://34.249.251.169:5000" target="_blank">Open DIGITS</a></h3>
 
 ## Introduction: Classification of handwritten digits
 
