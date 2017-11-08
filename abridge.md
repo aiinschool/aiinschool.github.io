@@ -111,7 +111,7 @@ To create this dataset, click on the `Datasets` tab, then `Images` and `Classifi
 You'll be taken to the `New Image Classification Dataset` page. Then:
 * Set the `Image Type` as `Color`.
 * Set the `width` and `height` of the image to `64` pixels. This will help our network train faster.
-* Under `Training Images` type in the path `/data/catsdogs/train`
+* Under `Training Images` type in the path `/data/catdog/train`
 * Name the dataset `catsdogs_data`
 * Press `Create`
 
