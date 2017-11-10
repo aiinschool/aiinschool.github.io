@@ -3,10 +3,10 @@ layout: page
 permalink: /stretchexercise
 ---
 
-## Stretch Exercise: Improving the accuracy of your model
+# Stretch Exercise: Improving the accuracy of your model
 **Unlike MNIST, the cats and dogs dataset has much more variation and is therefore harder to for the model to make a prediction. Use one or a combination of techniques described in the following sections to maximise your accuracy. What's the highest accuracy that you can achieve?**
 
-### Customising your network layers
+## Customising your network layers
 
 It is possible to customise your network by editing the network definition file. The network is composed of a series of layers connected to each other. For example, here's a `Convolution` and `Pooling` layer:
 
@@ -64,7 +64,7 @@ Once you've started training your customised model, it is possible to clone your
 
 <img src="/img/clone_job.png"  alt="Network visulisation" class="img-responsive img-rounded img-screenshot" />
 
-### Use more filters in your convolution layers
+## Use more filters in your convolution layers
 
 Adding more filters in your `Convolution` layers allows it to detect more features which can allow the model to make more complex predictions. You can do this by increasing the `num_output` parameter. In this case, for `conv2` layer, the `50` filters has changed to `100`.
 
@@ -94,7 +94,7 @@ layer {
 }
 ```
 
-### Add activation functions
+## Add activation functions
 
 Activation functions such as `ReLU` adds non-linearity to our network and allows it to express more complexity. Try adding the `ReLU` layer after every `Pooling` layer in your network:
 
@@ -107,20 +107,20 @@ layer {
 }
 ```
 
-### Add more layers
+## Add more layers
 
 Deeper networks also allows for more complex predictions. Try adding more `Convolution` layers to your model.
 * Don't forget to add a `Pooling` and optionally `ReLU` layer after your new `Convolution` layer.
 * Don't forget to change the `bottom` prameter of the `ip1` layer.
 
 
-### More training
+## More training
 
 As the more feature maps and layers are added, the model will have to be trained for longer. This can be done by changing the number of training `epochs` while creating your model:
 
 <img src="/img/training_epochs.png" alt="Changing epochs" class="img-responsive img-rounded img-screenshot"  />
 
-### Reduce overfitting
+## Reduce overfitting
 
 It is also important to observe the `validation loss` (green line) along with the `accuracy` (orange line). The graph below shows an example of `training loss` (blue line) diverging from the `validation loss`:
 
