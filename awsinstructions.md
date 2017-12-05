@@ -13,7 +13,7 @@ The following is an instruction for using AWS to launch instances of DIGITS for 
     <br/>![EC 2](/img/aws/2-ec2.png)
 3. **If running for the first time you will need to enable the use of GPU instances. It can take Amazon a few hours to respond.** Click on `Limits` on the left menu. Find the `Running On-Demand p2.xlarge instances` and click on `Request limit increase` and fill in the form in the following page. <br/>![Search for AMI](/img/aws/limitincrease.png)
 3. Click on `AMIs` on the left menu. <br/>![AMIs](/img/aws/3-amis.png)
-4. In the search bar, select `Public images` and type in `ami-a5f34ddc`. <br/>![Search for AMI](/img/aws/4-amisearch.png)
+4. In the search bar, select `Public images` and type in `ami-d953eda0`. <br/>![Search for AMI](/img/aws/4-amisearch.png)
 5. `Right-click` on the image called `DIGITS AI in School` and select `Launch`. <br/>![Launch images](/img/aws/5-launchimg.png)
 6. Select the `GPU Compute p2.xlarge` <br/>![Select p2.xlarge](/img/aws/6-p2xlarge.png)
 7. Select `Next: Configure Instance Details`. You'll be taken to the `Configure Instance` page. <br/>![Config instance detail](/img/aws/7-configinstancedetail.png)
