@@ -28,4 +28,4 @@ The following is an instruction for using AWS to launch instances of DIGITS for 
 16. Click on `Services` at the top-left of your screen and then on `EC2` to go back to the main Dashboard. <br/>![EC 2](/img/aws/2-ec2.png)
 17. Click on `Instances` on the left-hand menu to go to the `Instances page`. You'll notice a number of launched instances.  <br/>![Instance page](/img/aws/17-instancepage.png)
 18. After the `Instance State` lights have gone green and status shows `Running`, under the `IPv4 Public IP` column, you will see the IP number, in this case it is `52.16.2.0` (You may need to scroll right if your browser window is too small).  <br/>![Instance running](/img/aws/18-instancerunning.png)
-19. If the IP is `52.16.2.0`, the address to provide your student is `http://52.16.2.0:5000`. Assign a different instance for each one of your students.
+19. If the IP is `52.16.2.0`, the address to provide your student is `http://52.16.2.0:5000`, **it is important to add the `:5000` to the end of the address**. Assign a different instance for each one of your students.
