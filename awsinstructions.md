@@ -12,20 +12,20 @@ The following is an instruction for using AWS to launch instances of DIGITS for 
 3. Click on `Services` at the top-left of your screen and then on `EC2`. You will be taken to the EC2 dashboard.
     <br/>![EC 2](/img/aws/2-ec2.png)
 4. **If running for the first time you will need to contact Amazon to enable the use of GPU instances. It can take Amazon a few hours to respond.** 
-	4.1. Click on `Support` on the top right corner of the page and select `Support Center`. <br/>![Go to support centre](/img/aws/supportcentre.png)
-	4.2. Click on `Create case` <br/>![Support centre case](/img/aws/supportcentrepage.png)
-	4.3. On the `Create case` page, enter the following details: <br/>![Creating a support case](/img/aws/supportcase.png)
-		4.3.* For `Regarding*` choose `Service Limit Increase`
-		4.3.* For `Limit Type*` choose `EC2 Instances`
-		4.3.* For `Region*` choose `EU (Ireland)`
-		4.3.* For `Primary Instance Type*` choose `p2.xlarge`
-		4.3.* For `Limit*` choose `Instance Limit`
-		4.3.* For `New Limit Value*` put in the number of students that will be running this exercise.
-		4.3.* For `Use Case Description*` enter `Used as part of a course for introducing students to deep learning.`
-		4.3.* For `Contact method*` select `Web`
-		4.3.* Press the `Submit` button.
-	4.4. You will be taken to the support ticket page and should also receive an e-mail with updates. **It may take a few hours for Amazon to respond.**
-	4.5. To check the status of your ticket you can click on `Support` on the top right of your page and click `Support centre` the `Limit Increase: EC2 Instance` ticket will have been created. Click on it to see the correspondance.  <br/>![Support ticket](/img/aws/supportticket.png)
+	1. Click on `Support` on the top right corner of the page and select `Support Center`. <br/>![Go to support centre](/img/aws/supportcentre.png)
+	2. Click on `Create case` <br/>![Support centre case](/img/aws/supportcentrepage.png)
+	3. On the `Create case` page, enter the following details: <br/>![Creating a support case](/img/aws/supportcase.png)
+		* For `Regarding*` choose `Service Limit Increase`
+		* For `Limit Type*` choose `EC2 Instances`
+		* For `Region*` choose `EU (Ireland)`
+		* For `Primary Instance Type*` choose `p2.xlarge`
+		* For `Limit*` choose `Instance Limit`
+		* For `New Limit Value*` put in the number of students that will be running this exercise.
+		* For `Use Case Description*` enter `Used as part of a course for introducing students to deep learning.`
+		* For `Contact method*` select `Web`
+		* Press the `Submit` button.
+	4. You will be taken to the support ticket page and should also receive an e-mail with updates. **It may take a few hours for Amazon to respond.**
+	5. To check the status of your ticket you can click on `Support` on the top right of your page and click `Support centre` the `Limit Increase: EC2 Instance` ticket will have been created. Click on it to see the correspondance.  <br/>![Support ticket](/img/aws/supportticket.png)
 5. Click on `AMIs` on the left menu. <br/>![AMIs](/img/aws/3-amis.png)
 6. In the search bar, select `Public images` and copy and paste `ami-d953eda0` in to the text box and press enter. <br/>![Search for AMI](/img/aws/4-amisearch.png)
 7. `Right-click` on the image called `DIGITS AI in School` and select `Launch`. <br/>![Launch images](/img/aws/5-launchimg.png)
